@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anirban Mondal - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e40af',
+                        accent: '#f97316',
+                        dark: '#0f172a',
+                        light: '#f8fafc'
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-in': 'slideIn 0.5s ease-out forwards',
+                        'fade-in': 'fadeIn 1s ease-out forwards'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply font-sans bg-gradient-to-br from-slate-50 to-blue-50 text-slate-800;
+            }
+            .section-padding {
+                @apply py-16 md:py-24 px-4 sm:px-6 lg:px-8;
+            }
+            .card {
+                @apply bg-white rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl;
+            }
+            .btn-primary {
+                @apply bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl;
+            }
+            .skill-bar {
+                @apply h-3 bg-blue-100 rounded-full overflow-hidden;
+            }
+            .skill-progress {
+                @apply h-full bg-primary rounded-full;
+            }
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-primary">Anirban<span class="text-accent">.</span></a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-slate-700 hover:text-primary font-medium transition-colors">Home</a>
+                    <a href="#about" class="text-slate-700 hover:text-primary font-medium transition-colors">About</a>
+                    <a href="#experience" class="text-slate-700 hover:text-primary font-medium transition-colors">Experience</a>
+                    <a href="#skills" class="text-slate-700 hover:text-primary font-medium transition-colors">Skills</a>
+                    <a href="#education" class="text-slate-700 hover:text-primary font-medium transition-colors">Education</a>
+                    <a href="#contact" class="btn-primary">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-slate-700 hover:text-primary">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 absolute w-full shadow-lg">
+            <div class="flex flex-col space-y-3">
+                <a href="#home" class="text-slate-700 hover:text-primary font-medium py-2">Home</a>
+                <a href="#about" class="text-slate-700 hover:text-primary font-medium py-2">About</a>
+                <a href="#experience" class="text-slate-700 hover:text-primary font-medium py-2">Experience</a>
+                <a href="#skills" class="text-slate-700 hover:text-primary font-medium py-2">Skills</a>
+                <a href="#education" class="text-slate-700 hover:text-primary font-medium py-2">Education</a>
+                <a href="#contact" class="btn-primary text-center py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 section-padding">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="animate-fade-in">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                    Hi, I'm <span class="text-primary">Anirban Mondal</span>
+                </h1>
+                <div class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                    <span class="text-primary">I'm a </span>
+                    <span class="text-accent" id="changing-text"></span>
+                    <span class="text-accent" id="cursor">|</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl text-slate-600 mb-6">
+                    Electronics & Communication Engineer
+                </h2>
+                <p class="text-lg text-slate-600 mb-8 max-w-2xl">
+                    Final-year B.Tech student with strong skills in software development, web technologies, and problem-solving. 
+                    Passionate about building scalable, efficient, and user-friendly applications.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-paper-plane mr-2"></i> Contact Me
+                    </a>
+                    <a href="#experience" class="bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 px-6 rounded-full transition-all duration-300">
+                        View Experience
+                    </a>
+                </div>
+                <div class="flex mt-8 space-x-4">
+                    <a href="https://www.linkedin.com/in/anirban-mondal-938b09253/" target="_blank" class="text-slate-700 hover:text-primary text-2xl transition-colors">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/ByteDynasty" target="_blank" class="text-slate-700 hover:text-primary text-2xl transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:anirban26062004@gmail.com" class="text-slate-700 hover:text-primary text-2xl transition-colors">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="relative flex justify-center animate-float">
+               <div class="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+  <!-- Outer pulsing gradient ring -->
+  <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-accent opacity-30 animate-pulse-slow"></div>
+  
+  <!-- Middle delayed pulse -->
+  <div class="absolute inset-6 rounded-full bg-gradient-to-br from-primary to-accent opacity-50 animate-pulse-slow" style="animation-delay: 0.8s;"></div>
+  
+  <!-- Profile image container -->
+  <div class="absolute inset-12 rounded-full bg-white shadow-lg flex items-center justify-center overflow-hidden">
+    <img 
+      src="profileimg.jpg" 
+      alt="Profile picture of Anirban Mondal" 
+      class="rounded-full w-full h-full object-cover transition-transform duration-500 hover:scale-155 z-10" 
+    />
+  </div>
+</div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 card animate-fade-in">
+                    <h3 class="text-2xl font-bold mb-4">Who I Am</h3>
+                    <p class="text-slate-600 mb-4">
+                        I'm a final-year B.Tech student in Electronics & Communication Engineering at Hoghly Engineering and Technology College. 
+                        With a strong foundation in both hardware and software, I've developed expertise in software development, web technologies, 
+                        and problem-solving.
+                    </p>
+                    <p class="text-slate-600 mb-4">
+                        My journey in technology started with curiosity about how things work, leading me to explore programming languages and 
+                        web development frameworks. I'm passionate about creating solutions that make a difference.
+                    </p>
+                    
+                </div>
+                <div class="card animate-fade-in">
+                    <h3 class="text-2xl font-bold mb-4">Personal Info</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                            <span>Ranaghat, West-Bengal, 741254, India</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-primary mt-1 mr-3"></i>
+                            <span>+91 9933350158</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-primary mt-1 mr-3"></i>
+                            <span>anirban26062004@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fab fa-linkedin text-primary mt-1 mr-3"></i>
+                            <span>linkedin.com/in/anirban-mondal-938b09253</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fab fa-github text-primary mt-1 mr-3"></i>
+                            <span>github.com/ByteDynasty</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section-padding">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Work Experience</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Experience 1 -->
+                <div class="card border-t-4 border-primary animate-fade-in">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold">Professional Python Programming Intern</h3>
+                        <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">2025</span>
+                    </div>
+                    <p class="text-accent font-medium mb-3">Ardent Software – Kolkata, India</p>
+                    <ul class="space-y-2 text-slate-600">
+                        <li class="flex">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-primary"></i>
+                            <span>Developed automation scripts, file handling solutions, and data processing programs in Python</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-primary"></i>
+                            <span>Built small-scale projects demonstrating modular programming, code optimization, and debugging skills</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-primary"></i>
+                            <span>Applied OOP principles and algorithmic problem-solving for real-world use cases</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Experience 2 -->
+                <div class="card border-t-4 border-accent animate-fade-in" style="animation-delay: 0.2s;">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold">Web Development Intern</h3>
+                        <span class="bg-orange-100 text-accent px-3 py-1 rounded-full text-sm">2024</span>
+                    </div>
+                    <p class="text-accent font-medium mb-3">MotionCut – Remote</p>
+                    <ul class="space-y-2 text-slate-600">
+                        <li class="flex">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-primary"></i>
+                            <span>Designed and developed responsive, interactive web projects using HTML, CSS, and JavaScript</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-primary"></i>
+                            <span>Created a dynamic image slider, animated login page, and Amazon front-end clone</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-primary"></i>
+                            <span>Improved UI/UX by optimizing cross-browser compatibility and mobile responsiveness</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="card border-t-4 border-green-500 animate-fade-in" style="animation-delay: 0.4s;">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold">AI-ML Virtual Intern</h3>
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">2022-2023</span>
+                    </div>
+                    <p class="text-accent font-medium mb-3">Amazon Web Services (AWS) – Remote</p>
+                    <ul class="space-y-2 text-slate-600">
+                        <li class="flex">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-primary"></i>
+                            <span>Gained hands-on experience with AWS services including EC2, S3, and Lambda</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-primary"></i>
+                            <span>Learned cloud computing fundamentals and deployment of AI/ML models on cloud platforms</span>
+                        </li>
+                        <li class="flex">
+                            <i class="fas fa-circle text-xs mt-2 mr-2 text-primary"></i>
+                            <span>Understood AWS infrastructure and its impact on scalable application deployment</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Volunteer Experience -->
+            <div class="mt-16 card animate-fade-in">
+                <h3 class="text-2xl font-bold mb-6">Volunteer Experience</h3>
+                <div class="border-l-4 border-primary pl-4 py-2">
+                    <h4 class="text-xl font-bold">Student Volunteer</h4>
+                    <p class="text-accent font-medium mb-2">National Service Scheme | Oct 2022 - Present</p>
+                    <p class="text-slate-600">
+                        Participated in community development and awareness programs, contributing to social initiatives 
+                        and gaining valuable experience in teamwork and leadership.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-slate-50 section-padding">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">My Skills</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Technical Skills -->
+                <div class="card animate-fade-in">
+                    <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Python</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress w-[90%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Java</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress w-[85%]"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">C/C++</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress w-[85%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">HTML/CSS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress w-[95%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Domain Skills -->
+                <div class="card animate-fade-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-6">Domain Knowledge</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <i class="fas fa-code text-3xl text-primary mb-2"></i>
+                            <h4 class="font-bold">DSA</h4>
+                            <p class="text-sm text-slate-600">Data Structures & Algorithms</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <i class="fas fa-microchip text-3xl text-primary mb-2"></i>
+                            <h4 class="font-bold">Digital Electronics</h4>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <i class="fas fa-wave-square text-3xl text-primary mb-2"></i>
+                            <h4 class="font-bold">Analog Electronics</h4>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg text-center">
+                            <i class="fas fa-network-wired text-3xl text-primary mb-2"></i>
+                            <h4 class="font-bold">Network Theory</h4>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold mt-8 mb-6">Tools & Technologies</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-white border border-slate-200 px-4 py-2 rounded-full">VS Code</span>
+                        <span class="bg-white border border-slate-200 px-4 py-2 rounded-full">Git & GitHub</span>
+                        <span class="bg-white border border-slate-200 px-4 py-2 rounded-full">Figma</span>
+                        <span class="bg-white border border-slate-200 px-4 py-2 rounded-full">AWS</span>
+                        <span class="bg-white border border-slate-200 px-4 py-2 rounded-full">MATLAB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section-padding">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Education</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-primary transform md:translate-x-[-50%]"></div>
+                
+                <!-- Education Item 1 -->
+                <div class="relative mb-12 md:mb-20 pl-8 md:pl-0">
+                    <div class="absolute left-0 md:left-1/2 top-4 w-6 h-6 bg-primary rounded-full transform md:translate-x-[-50%]"></div>
+                    <div class="ml-0 md:ml-[52%] card animate-fade-in">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">B.Tech Electronics & Communication Engineering</h3>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">2022-2026</span>
+                        </div>
+                        <p class="text-accent font-medium mb-3">Hoghly Engineering and Technology College</p>
+                        <p class="text-slate-600">
+                            Pursuing a comprehensive engineering education with focus on electronics, communication systems, 
+                            and software development. Developing expertise in both hardware and software domains.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Education Item 2 -->
+                <div class="relative mb-12 md:mb-20 pl-8 md:pl-0">
+                    <div class="absolute left-0 md:left-1/2 top-4 w-6 h-6 bg-primary rounded-full transform md:translate-x-[-50%]"></div>
+                    <div class="mr-0 md:mr-[52%] md:text-right card animate-fade-in" style="animation-delay: 0.2s;">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Higher Secondary Pure Science</h3>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">2020-2022</span>
+                        </div>
+                        <p class="text-accent font-medium mb-3">Birnagar High School</p>
+                        <p class="text-slate-600">
+                            Completed higher secondary education with a focus on science subjects. Achieved a GPA of 80% 
+                            demonstrating strong academic performance and analytical skills.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Education Item 3 -->
+                <div class="relative pl-8 md:pl-0">
+                    <div class="absolute left-0 md:left-1/2 top-4 w-6 h-6 bg-primary rounded-full transform md:translate-x-[-50%]"></div>
+                    <div class="ml-0 md:ml-[52%] card animate-fade-in" style="animation-delay: 0.4s;">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold">Secondary Examination</h3>
+                            <span class="bg-blue-100 text-primary px-3 py-1 rounded-full text-sm">2014-2020</span>
+                        </div>
+                        <p class="text-accent font-medium mb-3">Radhanagar High School</p>
+                        <p class="text-slate-600">
+                            Completed secondary education with distinction. Achieved a GPA of 88% demonstrating 
+                            consistent academic excellence and dedication to learning.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section class="bg-slate-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Languages</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow text-center">
+                    <div class="text-4xl mb-3">🇺🇸</div>
+                    <h3 class="font-bold text-lg">English</h3>
+                    <p class="text-slate-600">Proficient</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow text-center">
+                    <div class="text-4xl mb-3">🇮🇳</div>
+                    <h3 class="font-bold text-lg">Hindi</h3>
+                    <p class="text-slate-600">Proficient</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow text-center">
+                    <div class="text-4xl mb-3">🇮🇳</div>
+                    <h3 class="font-bold text-lg">Bengali</h3>
+                    <p class="text-slate-600">Proficient</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow text-center">
+                    <div class="text-4xl mb-3">🇪🇸</div>
+                    <h3 class="font-bold text-lg">Spanish</h3>
+                    <p class="text-slate-600">Beginner</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards & Certificates -->
+    <section class="section-padding">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Awards & Certificates</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Awards -->
+                <div class="card animate-fade-in">
+                    <h3 class="text-2xl font-bold mb-6">Awards</h3>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-primary pl-4 py-2">
+                            <h4 class="text-xl font-bold">Top 500 Painter in West Bengal</h4>
+                            <p class="text-accent font-medium mb-2">All Bengal Drawing Committee | Sep 2017</p>
+                            <p class="text-slate-600">
+                                Recognized for artistic excellence and creativity in painting among top talents in West Bengal.
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4 py-2">
+                            <h4 class="text-xl font-bold">Mi Scholarship for Class 11 and 12</h4>
+                            <p class="text-accent font-medium mb-2">Mi India | Mar 2021</p>
+                            <p class="text-slate-600">
+                                Awarded for academic excellence and outstanding performance during higher secondary education.
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-primary pl-4 py-2">
+                            <h4 class="text-xl font-bold">National Means-cum-Merit Scholarship</h4>
+                            <p class="text-accent font-medium mb-2">The National Merit Scholarship Corporation (NMSC) | Mar 2017</p>
+                            <p class="text-slate-600">
+                                Merit-based scholarship awarded for academic excellence and financial need.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificates -->
+                <div class="card animate-fade-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-6">Certificates</h3>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-accent pl-4 py-2">
+                            <h4 class="text-xl font-bold">Level 3 GenAI: Prompt Engineering</h4>
+                            <p class="text-accent font-medium mb-2">Google | Credential ID: 5592645</p>
+                            <p class="text-slate-600">
+                                Advanced certification in prompt engineering for generative AI applications.
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-accent pl-4 py-2">
+                            <h4 class="text-xl font-bold">The Joy of Computing using Python</h4>
+                            <p class="text-accent font-medium mb-2">NPTEL</p>
+                            <p class="text-slate-600">
+                                Comprehensive course on Python programming and computational thinking.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-slate-900 text-white section-padding">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+                <p class="mt-6 text-slate-300 max-w-2xl mx-auto">
+                    Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-1 card bg-slate-800 animate-fade-in">
+                    <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary text-xl mt-1 mr-4"></i>
+                            <span>Ranaghat, West-Bengal, 741254, India</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-primary text-xl mt-1 mr-4"></i>
+                            <span>+91 9933350158</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-primary text-xl mt-1 mr-4"></i>
+                            <span>anirban26062004@gmail.com</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <h4 class="text-xl font-bold mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/in/anirban-mondal-938b09253/" target="_blank" class="bg-slate-700 hover:bg-primary w-12 h-12 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="https://github.com/ByteDynasty" target="_blank" class="bg-slate-700 hover:bg-primary w-12 h-12 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="mailto:anirban26062004@gmail.com" class="bg-slate-700 hover:bg-primary w-12 h-12 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-2 card bg-slate-800 animate-fade-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2">Your Email</label>
+                                <input type="email" id="email" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <a href="#" class="text-2xl font-bold text-white">Anirban<span class="text-primary">.</span></a>
+                <p class="mt-4 max-w-2xl mx-auto">
+                    Final-year Electronics & Communication Engineering student with strong skills in software development and web technologies.
+                </p>
+                <div class="flex justify-center space-x-6 mt-6">
+                    <a href="https://www.linkedin.com/in/anirban-mondal-938b09253/" target="_blank" class="hover:text-primary transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://github.com/ByteDynasty" target="_blank" class="hover:text-primary transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="mailto:anirban26062004@gmail.com" class="hover:text-primary transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+                <div class="mt-8 pt-8 border-t border-slate-800 text-sm">
+                    <p>&copy; 2025. Made with ♥️ All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Text erasing/rewriting animation
+        const texts = ["Developer", "Programmer", "Learner","Engineer" ];
+        let currentIndex = 0;
+        let charIndex = 0;
+        let isErasing = false;
+        const changingTextElement = document.getElementById('changing-text');
+        const cursorElement = document.getElementById('cursor');
+
+        function typeEffect() {
+            const currentText = texts[currentIndex];
+            
+            if (!isErasing && charIndex < currentText.length) {
+                // Typing
+                changingTextElement.textContent += currentText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeEffect, 100);
+            } else if (isErasing && charIndex > 0) {
+                // Erasing
+                changingTextElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(typeEffect, 50);
+            } else if (!isErasing && charIndex === currentText.length) {
+                // Pause after typing
+                isErasing = true;
+                setTimeout(typeEffect, 1000);
+            } else {
+                // Pause after erasing and move to next text
+                isErasing = false;
+                currentIndex = (currentIndex + 1) % texts.length;
+                setTimeout(typeEffect, 500);
+            }
+        }
+
+        // Start the animation
+        setTimeout(typeEffect, 1000);
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slide-in');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.card, h2, h3').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
